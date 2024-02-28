@@ -6,24 +6,44 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/28 17:54:32 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:45:39 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_printf(const char *str, ...)
+static void	ft_free(char **buffer)
 {
-    char *set;
+	int	count;
 
-    set = "cspdiuxX%";
-
-    ft_printf(str);
-    return (0);
+	count = 0;
+	while (*(buffer + count))
+	{
+		free(*(buffer + count));
+		count++;
+	}
+	free(buffer);
+	return ;
 }
 
-int main(void)
+int	ft_printf(const char *str, ...)
 {
-    ft_printf("s");
-    return (0);
+	char	*set;
+	char	**buffer2d;
+	size_t	count;
+
+	set = "cspdiuxX%";
+	// split avec le caractere %
+	buffer2d = ft_split(str, "%");
+	// ft_putstr chaque element du buffer
+	count = 0;
+	while (*(buffer2d + count))
+	{
+		ft_putstr_fd(*(buffer2d + count), 1);
+		count++;
+	}
+    //recuperer la liste des va_list
+	// free le buffer
+	ft_free(buffer2d);
+	return (0);
 }

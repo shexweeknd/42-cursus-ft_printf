@@ -23,7 +23,7 @@ all: $(OBJS)
 
 debug: FLAGS += -g
 debug:
-	@cc $(FLAGS) -L. -lftprintf && ./a.out
+	@cc $(FLAGS) main.c -L. -lftprintf && ./a.out
 
 clean: $(OBJS)
 	@rm -rf $(OBJS) $(GARBAGE)
