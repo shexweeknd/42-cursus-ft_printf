@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 13:10:24 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:14:19 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,31 @@ static size_t	ft_isset(const char c, const char *set)
 	return (0);
 }
 
-static int	ft_putformat(char *str, va_list ap)
+static int	ft_putformat(const char *str, va_list ap)
 {
 	int		printed;
 	char	*set;
 
 	set = "cspdiuxX%";
-	if (!ft_isset(*(str + 1), set))
+	if (!ft_isset(*str, set))
 		return (0);
 	printed = 0;
-	if (*(str + 1) == 'c')
-		printed += write(1, va_arg(ap, int), 1);
-	if (*(str + 1) == 's')
+	if (*str == 'c')
+		printed += ft_putchar_i(va_arg(ap, int));
+	else if (*str == 's')
 		printed += ft_putstr(va_arg(ap, char *));
-	if (*(str + 1) == 'p')
+	else if (*str == 'p')
 		printed += ft_put_addr(va_arg(ap, void *));
-	if (*(str + 1) == 'd' || *(str + 1) == 'i')
+	else if (*str == 'd' || *str == 'i')
 		printed += ft_putnbr_base(va_arg(ap, int), "0123456789");
-	if (*(str + 1) == 'u')
+    else if (*str == 'u')
 		printed += ft_put_unsigned_nbr(va_arg(ap, unsigned int));
-	if (*(str + 1) == 'x')
+	else if (*str == 'x')
 		printed += ft_putnbr_base(va_arg(ap, int), "0123456789abcdef");
-	if (*(str + 1) == 'X')
+	else if (*str == 'X')
 		printed += ft_putnbr_base(va_arg(ap, int), "0123456789ABCDEF");
-	if (*(str + 1) == '%')
-		printed += write(1, 37, 1);
+	else if (*str == '%')
+		printed += write(1, "%", 1);
 	return (printed);
 }
 
@@ -60,10 +60,11 @@ int	ft_printf(const char *str, ...)
 	int		printed;
 
 	va_start(ap, str);
+	printed = 0;
 	while (*str)
 	{
 		if (*str == '%')
-			printed += ft_putformat((char *)str, ap);
+			printed += ft_putformat(++str, ap);
 		else
 			printed += write(1, str, 1);
 		str++;

@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:36:26 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 12:44:26 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:24:58 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ static int	recurse_nbr(int nbr, char *base)
 		base_size++;
 	if (base_size == 0)
 		return (0);
+	printed = 0;
 	if (nbr >= base_size)
 	{
 		printed += recurse_nbr(nbr / base_size, base);
-		ft_putchar(nbr % base_size);
+		ft_putchar_i(nbr % base_size + 48);
 	}
 	else if (nbr < base_size)
-		printed += ft_putchar(nbr % base_size);
+		printed += ft_putchar_i(nbr % base_size + 48);
 	return (printed);
 }
 
@@ -88,4 +89,5 @@ int	ft_putnbr_base(int nbr, char *base)
 		nbr *= -1;
 	}
 	printed += recurse_nbr(nbr, base);
+	return (printed);
 }

@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:00:27 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 13:10:43 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:25:16 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	ft_put_unsigned_nbr(unsigned int nb)
 		printed += ft_putnbr_base(n / 10, "0123456789");
 		n %= 10;
 	}
-	printed += ft_putchar(n + 48);
+	printed += ft_putchar_i(n + 48);
 	return (printed);
 }

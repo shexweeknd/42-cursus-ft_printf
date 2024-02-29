@@ -29,20 +29,20 @@ END = \033[0m
 	@cc -c $(SRCS) -I ./
 
 all: $(OBJS)
-	@echo "$(GREEN)---$(BLUE) Exec all rule$(GREEN)---$(END)"
+	@echo "$(GREEN)---$(BLUE) Exec all rule $(GREEN)---$(END)"
 	@cd ./libft && \
 	make clean bonus && \
 	cp libft.a ../$(NAME) && \
 	rm libft.a && \
 	cd ../
-	@ar rcs $(NAME) $(OBJS)
+	@ar rc $(NAME) $(OBJS)
 	@make clean
 	@ranlib $(NAME)
 
-debug: FLAGS += -g
 debug: re
 	@echo "$(GREEN)---$(BLUE) Exec debug rule$(GREEN)---$(END)"
-	@cc $(FLAGS) main.c -L. -lftprintf && ./a.out
+#	@cc $(FLAGS) -g main.c -L. -lftprintf && ./a.out | cat -e
+	@cc $(FLAGS) -g main.c $(SRCS) && ./a.out | cat -e
 
 clean: $(OBJS)
 	@rm -rf $(OBJS) $(GARBAGE)
