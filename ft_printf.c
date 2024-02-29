@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 12:15:58 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:10:24 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,19 @@ static int	ft_putformat(char *str, va_list ap)
 		return (0);
 	printed = 0;
 	if (*(str + 1) == 'c')
-		printed += write(1, va_args(ap, int), 1);
+		printed += write(1, va_arg(ap, int), 1);
 	if (*(str + 1) == 's')
-		printed += ft_putstr(va_args(ap, char *));
+		printed += ft_putstr(va_arg(ap, char *));
 	if (*(str + 1) == 'p')
-		printed += ft_putaddr(va_args(ap, void *), sizeof(void *));
+		printed += ft_put_addr(va_arg(ap, void *));
 	if (*(str + 1) == 'd' || *(str + 1) == 'i')
-		printed += ft_putnbr_base(va_args(ap, int), "0123456789");
+		printed += ft_putnbr_base(va_arg(ap, int), "0123456789");
 	if (*(str + 1) == 'u')
-		printed += ft_put_unsigned(va_args(ap, unsigned int));
+		printed += ft_put_unsigned_nbr(va_arg(ap, unsigned int));
 	if (*(str + 1) == 'x')
-		printed += ft_putnbr_base(va_args(ap, int), "0123456789abcdef");
+		printed += ft_putnbr_base(va_arg(ap, int), "0123456789abcdef");
 	if (*(str + 1) == 'X')
-		printed += ft_putnbr_base(va_args(ap, int), "0123456789ABCDEF");
+		printed += ft_putnbr_base(va_arg(ap, int), "0123456789ABCDEF");
 	if (*(str + 1) == '%')
 		printed += write(1, 37, 1);
 	return (printed);

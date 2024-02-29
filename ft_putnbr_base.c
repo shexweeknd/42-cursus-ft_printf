@@ -6,16 +6,11 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:36:26 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 11:57:28 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:44:26 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
-static void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
 
 static int	recurse_nbr(int nbr, char *base)
 {
@@ -30,10 +25,10 @@ static int	recurse_nbr(int nbr, char *base)
 	if (nbr >= base_size)
 	{
 		printed += recurse_nbr(nbr / base_size, base);
-		write(1, nbr % base_size, 1);
+		ft_putchar(nbr % base_size);
 	}
 	else if (nbr < base_size)
-		printed += write(1, nbr % base_size, 1);
+		printed += ft_putchar(nbr % base_size);
 	return (printed);
 }
 
@@ -73,7 +68,7 @@ int	ft_putnbr_base(int nbr, char *base)
 	int printed;
 
 	if (!verify_errors(base))
-		return ;
+		return (0);
 	y = 0;
 	while (base[y])
 	{
@@ -81,7 +76,7 @@ int	ft_putnbr_base(int nbr, char *base)
 		while (base[x])
 		{
 			if (base[x] == base[y])
-				return ;
+				return (0);
 			x++;
 		}
 		y++;

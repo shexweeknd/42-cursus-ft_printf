@@ -9,6 +9,7 @@ SRCS = ft_printf.c \
 		ft_put_addr_upper.c \
 		ft_putnbr_base.c \
 		ft_put_unsigned_nbr.c \
+		ft_putchar_i.c \
 		ft_putstr.c \
 
 # Colors variables

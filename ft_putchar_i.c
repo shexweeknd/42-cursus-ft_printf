@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_unsigned_nbr.c                              :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 12:00:27 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 13:10:43 by hramaros         ###   ########.fr       */
+/*   Created: 2024/02/29 12:41:16 by hramaros          #+#    #+#             */
+/*   Updated: 2024/02/29 12:43:12 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_put_unsigned_nbr(unsigned int nb)
+int	ft_putchar(char c)
 {
-	unsigned int n;
-	int printed;
-
-	n = nb;
-	printed = 0;
-	if (n >= 10)
-	{
-		printed += ft_putnbr_base(n / 10, "0123456789");
-		n %= 10;
-	}
-	printed += ft_putchar(n + 48);
-	return (printed);
+	return (write(1, &c, 1));
 }
