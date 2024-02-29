@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:15:13 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 13:27:49 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:42:07 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 int	ft_printf(const char *str, ...);
 int	ft_put_addr(void *addr);
-int	ft_put_addr_upper(void *addr);
 int	ft_putnbr_base(int nbr, char *base);
 int	ft_put_unsigned_nbr(unsigned int nb);
 int ft_putchar_i(char c);

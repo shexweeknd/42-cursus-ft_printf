@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:36:26 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 14:24:58 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:36:10 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	recurse_nbr(int nbr, char *base)
 {
 	int	base_size;
-	int printed;
+	int	printed;
 
 	base_size = 0;
 	while (base[base_size])
@@ -26,7 +26,7 @@ static int	recurse_nbr(int nbr, char *base)
 	if (nbr >= base_size)
 	{
 		printed += recurse_nbr(nbr / base_size, base);
-		ft_putchar_i(nbr % base_size + 48);
+		printed += ft_putchar_i(nbr % base_size + 48);
 	}
 	else if (nbr < base_size)
 		printed += ft_putchar_i(nbr % base_size + 48);
@@ -66,7 +66,7 @@ int	ft_putnbr_base(int nbr, char *base)
 {
 	int	x;
 	int	y;
-	int printed;
+	int	printed;
 
 	if (!verify_errors(base))
 		return (0);
