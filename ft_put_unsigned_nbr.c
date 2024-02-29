@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_put_unsigned_nbr.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/28 09:15:13 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 12:09:56 by hramaros         ###   ########.fr       */
+/*   Created: 2024/02/29 12:00:27 by hramaros          #+#    #+#             */
+/*   Updated: 2024/02/29 12:05:24 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libftprintf.h"
 
-# include <limits.h>
-# include <stdarg.h>
-# include <stdint.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
+int	ft_put_unsigned_nbr(unsigned int nb)
+{
+	unsigned int	n;
+	int printed;
 
-int	ft_printf(const char *str, ...);
-int	ft_put_addr(void *addr);
-int	ft_put_addr_upper(void *addr);
-int	ft_putnbr_base(int nbr, char *base);
-int	ft_put_unsigned_nbr(unsigned int nb);
-int	ft_putstr(char *str);
-
-#endif
+	n = nb;
+	printed = 0;
+	if (n >= 10)
+	{
+		printed += ft_putnbr_base(n / 10, "0123456789");
+		n %= 10;
+	}
+	printed += write(1, n + 48, 1);
+	return (printed)
+}
