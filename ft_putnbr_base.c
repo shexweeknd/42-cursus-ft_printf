@@ -6,16 +6,16 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:36:26 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 15:48:01 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:27:58 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	recurse_nbr(int nbr, char *base)
+static int	recurse_nbr(long nbr, char *base)
 {
-	int	base_size;
-	int	printed;
+	long	base_size;
+	int		printed;
 
 	base_size = 0;
 	while (base[base_size])
@@ -64,16 +64,18 @@ static int	verify_errors(char *base)
 
 int	ft_putnbr_base(int nbr, char *base)
 {
-	int	printed;
+	int		printed;
+	long	n;
 
 	if (!verify_errors(base))
 		return (0);
 	printed = 0;
+	n = nbr;
 	if (nbr < 0)
 	{
 		printed += write(1, "-", 1);
-		nbr *= -1;
+		n *= -1;
 	}
-	printed += recurse_nbr(nbr, base);
+	printed += recurse_nbr(n, base);
 	return (printed);
 }
