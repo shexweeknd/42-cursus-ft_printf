@@ -30,7 +30,7 @@ END = \033[0m
 all: $(OBJS)
 	@echo "$(GREEN)---$(BLUE) Exec all rule $(GREEN)---$(END)"
 	@cd ./libft && \
-	make clean bonus && \
+	make fclean bonus && \
 	cp libft.a ../$(NAME) && \
 	rm libft.a && \
 	cd ../
