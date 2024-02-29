@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:00:27 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 13:25:16 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:22:25 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_put_unsigned_nbr(unsigned int nb)
 {
-	unsigned int n;
-	int printed;
+	unsigned int	n;
+	int				printed;
 
 	n = nb;
 	printed = 0;

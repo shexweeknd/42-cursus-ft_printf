@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 09:18:21 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 11:35:23 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:23:23 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static size_t	ft_get_occ(const char *str)
 
 static void	ft_free(char **buffer)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (*(buffer + count))

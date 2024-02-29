@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 14:41:45 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:22:17 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ static int	ft_putformat(const char *str, va_list ap)
 	else if (*str == 's')
 		printed += ft_putstr(va_arg(ap, char *));
 	else if (*str == 'p')
-		printed += ft_put_addr(va_arg(ap, void *));//TODO
+		printed += ft_put_addr(va_arg(ap, void *));
 	else if (*str == 'd' || *str == 'i')
 		printed += ft_putnbr_base(va_arg(ap, int), "0123456789");
-    else if (*str == 'u')
+	else if (*str == 'u')
 		printed += ft_put_unsigned_nbr(va_arg(ap, unsigned int));
 	else if (*str == 'x')
 		printed += ft_putnbr_base(va_arg(ap, int), "0123456789abcdef");

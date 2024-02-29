@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:35:03 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 15:20:28 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:29:22 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,13 @@ int	ft_put_addr(void *addr)
 		i++;
 	}
 	i = sizeof(int *);
-	printed = 0;
-	printed += write(1, "0x", 2);
+	printed = write(1, "0x", 2);
 	while (i > 0)
 	{
 		data[0] = hex[((char)b_data[i - 1] >> 4) & 0xf];
 		data[1] = hex[(char)b_data[i - 1] & 0xf];
-		if (i <= sizeof(int *) - 2)
+		if (i-- <= sizeof(int *) - 2)
 			printed += write(1, data, 2);
-		i--;
 	}
 	return (printed);
 }

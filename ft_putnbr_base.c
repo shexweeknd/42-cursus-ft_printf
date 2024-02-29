@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:36:26 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 14:36:10 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:24:38 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,10 @@ static int	verify_errors(char *base)
 
 int	ft_putnbr_base(int nbr, char *base)
 {
-	int	x;
-	int	y;
 	int	printed;
 
 	if (!verify_errors(base))
 		return (0);
-	y = 0;
-	while (base[y])
-	{
-		x = y + 1;
-		while (base[x])
-		{
-			if (base[x] == base[y])
-				return (0);
-			x++;
-		}
-		y++;
-	}
 	printed = 0;
 	if (nbr < 0)
 	{

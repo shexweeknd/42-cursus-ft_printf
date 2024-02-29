@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 08:31:08 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 15:20:38 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:29:32 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(void)
 {
-	int *res;
-	int ret;
+	int	*res;
+	int	ret;
 
-	res = NULL;
+	res = &ret;
 	ret = ft_printf("%p", res);
 	printf("\n%d\n", ret);
 	return (0);
