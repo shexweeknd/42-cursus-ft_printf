@@ -6,11 +6,11 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:36:26 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 15:24:38 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:48:01 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	recurse_nbr(int nbr, char *base)
 {

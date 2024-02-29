@@ -6,11 +6,11 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:35:03 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 15:29:22 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:47:38 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	ft_put_nil(void)
 {

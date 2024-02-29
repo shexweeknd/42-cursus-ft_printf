@@ -6,11 +6,11 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:00:27 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 15:22:25 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:47:44 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_put_unsigned_nbr(unsigned int nb)
 {

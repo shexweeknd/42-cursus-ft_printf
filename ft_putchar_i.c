@@ -6,11 +6,11 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:41:16 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 15:22:21 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:47:49 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 int	ft_putchar_i(char c)
 {
