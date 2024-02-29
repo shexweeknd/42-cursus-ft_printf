@@ -34,7 +34,9 @@ all: $(OBJS)
 	cp libft.a ../$(NAME) && \
 	rm libft.a && \
 	cd ../
+	@make .c.o
 	@ar rc $(NAME) $(OBJS)
+	@echo "$(GREEN) Created: $(END) $(NAME)"
 	@make clean
 	@ranlib $(NAME)
 
