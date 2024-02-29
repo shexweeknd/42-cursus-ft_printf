@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 08:31:08 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 16:29:43 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:58:04 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(void)
 	int	ret;
 
 	res = &ret;
-	ret = printf("%d", LONG_MAX);
+	ret = ft_printf("%x", -2);
 	printf("\n%d\n", ret);
 	return (0);
 }

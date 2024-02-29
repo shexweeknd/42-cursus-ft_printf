@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:15:13 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 15:48:35 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:49:13 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int	ft_putnbr_base(int nbr, char *base);
 int	ft_put_unsigned_nbr(unsigned int nb);
 int	ft_putchar_i(char c);
 int	ft_putstr(char *str);
+int	ft_putxX(unsigned int nbr, char *base);
 
 #endif

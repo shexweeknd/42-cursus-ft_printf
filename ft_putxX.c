@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_putxX.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 11:36:26 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 16:45:36 by hramaros         ###   ########.fr       */
+/*   Created: 2024/02/29 16:40:28 by hramaros          #+#    #+#             */
+/*   Updated: 2024/02/29 16:50:04 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 #include "ft_printf.h"
 
@@ -62,20 +64,12 @@ static int	verify_errors(char *base)
 	return (1);
 }
 
-int	ft_putnbr_base(int nbr, char *base)
+int	ft_putxX(unsigned int nbr, char *base)
 {
 	int		printed;
-	long	n;
 
 	if (!verify_errors(base))
 		return (0);
-	printed = 0;
-	n = nbr;
-	if (nbr < 0)
-	{
-		printed += write(1, "-", 1);
-		n *= -1;
-	}
-	printed += recurse_nbr(n, base);
+	printed = recurse_nbr(nbr, base);
 	return (printed);
 }

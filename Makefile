@@ -10,6 +10,7 @@ SRCS = ft_printf.c \
 		ft_put_unsigned_nbr.c \
 		ft_putchar_i.c \
 		ft_putstr.c \
+		ft_putxX.c \
 
 # Colors variables
 OBJS = $(SRCS:.c=.o)
