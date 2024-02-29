@@ -22,7 +22,7 @@ all: $(OBJS)
 	@ranlib $(NAME)
 
 debug: FLAGS += -g
-debug:
+debug: re
 	@cc $(FLAGS) main.c -L. -lftprintf && ./a.out
 
 clean: $(OBJS)

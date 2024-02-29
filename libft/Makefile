@@ -65,7 +65,7 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME)
 
 debug: $(SRC) $(MAINSRC)
-	@(gcc -g $(SRC) $(MAINSRC) $(FLAGS) && ./a.out)
+	@(cc -g $(SRC) $(MAINSRC) $(FLAGS) && ./a.out)
 
 bonus: $(ALLOBJS)
 	@ar rc $(NAME) $(ALLOBJS)

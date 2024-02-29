@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:15:13 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/28 18:02:44 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/02/29 10:26:15 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFTPRINTF_H
 
 # include <limits.h>
+# include <stdarg.h>
 # include <stdint.h>
 # include <stdio.h>
 # include <stdlib.h>
