@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:35:03 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/01 04:13:16 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/01 08:37:35 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@ static int	ft_put_nil(void)
 {
 	write(1, "(nil)", 5);
 	return (5);
+}
+
+static int ft_print_data(char *data, int printed)
+{
+	if (printed <= 2)
+		if (*(data) == '0')
+			return (write(1, (data + 1), 1));
+	return (write(1, data, 2));
 }
 
 int	ft_put_addr(void *addr)
@@ -41,7 +49,7 @@ int	ft_put_addr(void *addr)
 		data[0] = hex[((char)b_data[i - 1] >> 4) & 0xf];
 		data[1] = hex[(char)b_data[i-- - 1] & 0xf];
 		if (!(data[0] == '0' && data[1] == '0'))
-			printed += write(1, data, 2);
+			printed += ft_print_data(data, printed);
 	}
 	return (printed);
 }
