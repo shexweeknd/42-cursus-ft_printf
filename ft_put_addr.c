@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:35:03 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/01 08:37:35 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/01 08:39:49 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	ft_put_nil(void)
 	return (5);
 }
 
-static int ft_print_data(char *data, int printed)
+static int	ft_print_data(char *data, int printed)
 {
 	if (printed <= 2)
 		if (*(data) == '0')
