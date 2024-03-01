@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 18:00:10 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:22:44 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,14 @@ int	ft_printf(const char *str, ...)
 	while (*str)
 	{
 		if (*str == '%')
-			printed += ft_putformat(++str, ap);
+		{
+			if (ft_isset(*(str + 1), "-0."))
+				printed += ft_format_bonus_one(++str, ap);
+			else if (ft_isset(*(str + 1), "# +"))
+				printed += ft_format_bonus_two(++str, ap);
+			else
+				printed += ft_putformat(++str, ap);
+		}
 		else
 			printed += write(1, str, 1);
 		str++;

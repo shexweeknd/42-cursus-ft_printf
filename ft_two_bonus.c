@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_two_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 08:31:08 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/01 11:22:48 by hramaros         ###   ########.fr       */
+/*   Created: 2024/03/01 12:58:30 by hramaros          #+#    #+#             */
+/*   Updated: 2024/03/01 13:03:01 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
-int	main(void)
+int	ft_format_bonus_two(const char *str, va_list ap)
 {
-	int	ret;
-	float entry;
+	int	printed;
 
-	entry = 7.6;
-	ret = printf("%f", entry);
-	printf("\n%d\n", ret);
-	return (0);
+	printed = 0;
+	return (printed);
 }

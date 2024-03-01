@@ -12,6 +12,9 @@ SRCS = ft_printf.c \
 		ft_putstr.c \
 		ft_putx.c \
 
+BONUS = ft_one_bonus.c \
+		ft_two_bonus.c \
+
 # Colors variables
 OBJS = $(SRCS:.c=.o)
 
@@ -46,6 +49,17 @@ debug: re
 #	@cc $(FLAGS) -g main.c -L. -lftprintf && ./a.out | cat -e
 	@cc $(FLAGS) -g main.c $(SRCS) && ./a.out | cat -e
 
+bonus: $(SRCS) += $(OBJS)
+bonus:
+	@echo "$(GREEN)#Added: $(END) $(BONUS)"
+bonus: .c.o
+	@echo "$(GREEN)###$(BLUE) Exec Bonus rule$(GREEN)###$(END)"
+	@make re
+
+bonus-debug: bonus
+	@echo "$(GREEN)###$(BLUE) Debugging Bonus Files$(GREEN)###$(END)"
+	@cc $(FLAGS) -g main.c $(SRCS) && ./a.out | cat -e
+
 clean: $(OBJS)
 	@rm -rf $(OBJS) $(GARBAGE)
 	@echo "$(RED)#Cleaned $(END) $(GARBAGE)"
@@ -57,4 +71,4 @@ fclean: clean
 re: fclean
 	@make all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
