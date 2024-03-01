@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putxX.c                                         :+:      :+:    :+:   */
+/*   ft_putx.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 16:40:28 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 16:50:04 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/01 03:29:15 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static int	recurse_nbr(long nbr, char *base)
 	if (nbr >= base_size)
 	{
 		printed += recurse_nbr(nbr / base_size, base);
-		printed += ft_putchar_i(nbr % base_size + 48);
+		printed += ft_putchar_i(base[nbr % base_size]);
 	}
 	else if (nbr < base_size)
-		printed += ft_putchar_i(nbr % base_size + 48);
+		printed += ft_putchar_i(base[nbr % base_size]);
 	return (printed);
 }
 
@@ -64,7 +64,7 @@ static int	verify_errors(char *base)
 	return (1);
 }
 
-int	ft_putxX(unsigned int nbr, char *base)
+int	ft_putx(unsigned int nbr, char *base)
 {
 	int		printed;
 
