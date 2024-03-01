@@ -25,11 +25,11 @@ END = \033[0m
 
 # Rules
 .c.o:
-	@echo "$(GREEN)---$(BLUE) Exec .c.o rule$(GREEN)---$(END)"
+	@echo "$(GREEN)###$(BLUE) Exec .c.o rule$(GREEN)###$(END)"
 	@cc -c $(SRCS) -I ./
 
 all: $(OBJS)
-	@echo "$(GREEN)---$(BLUE) Exec all rule $(GREEN)---$(END)"
+	@echo "$(GREEN)###$(BLUE) Exec all rule $(GREEN)###$(END)"
 	@cd ./libft && \
 	make fclean bonus && \
 	cp libft.a ../$(NAME) && \
@@ -37,22 +37,22 @@ all: $(OBJS)
 	cd ../
 	@make .c.o
 	@ar rc $(NAME) $(OBJS)
-	@echo "$(GREEN) Created: $(END) $(NAME)"
+	@echo "$(GREEN)#Created: $(END) $(NAME)"
 	@make clean
 	@ranlib $(NAME)
 
 debug: re
-	@echo "$(GREEN)---$(BLUE) Exec debug rule$(GREEN)---$(END)"
+	@echo "$(GREEN)###$(BLUE) Exec debug rule$(GREEN)###$(END)"
 #	@cc $(FLAGS) -g main.c -L. -lftprintf && ./a.out | cat -e
 	@cc $(FLAGS) -g main.c $(SRCS) && ./a.out | cat -e
 
 clean: $(OBJS)
 	@rm -rf $(OBJS) $(GARBAGE)
-	@echo "$(RED) Cleaned $(END) $(GARBAGE)"
+	@echo "$(RED)#Cleaned $(END) $(GARBAGE)"
 
 fclean: clean
 	@rm -rf $(NAME) */*.a
-	@echo "$(RED) Cleaned $(END) $(NAME)"
+	@echo "$(RED)#Cleaned $(END) $(NAME)"
 
 re: fclean
 	@make all
