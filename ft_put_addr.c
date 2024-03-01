@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 11:35:03 by hramaros          #+#    #+#             */
-/*   Updated: 2024/02/29 15:47:38 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/01 04:13:16 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_put_nil(void)
 int	ft_put_addr(void *addr)
 {
 	unsigned int	i;
-	char			b_data[sizeof(int *)];
+	char			b_data[sizeof(unsigned int *)];
 	char			data[2];
 	char			*hex;
 	int				printed;
@@ -30,18 +30,17 @@ int	ft_put_addr(void *addr)
 	i = 0;
 	if (!addr)
 		return (ft_put_nil());
-	while (i < sizeof(int *))
+	while (i < sizeof(unsigned int *))
 	{
 		b_data[i] = ((char *)&addr)[i];
 		i++;
 	}
-	i = sizeof(int *);
 	printed = write(1, "0x", 2);
 	while (i > 0)
 	{
 		data[0] = hex[((char)b_data[i - 1] >> 4) & 0xf];
-		data[1] = hex[(char)b_data[i - 1] & 0xf];
-		if (i-- <= sizeof(int *) - 2)
+		data[1] = hex[(char)b_data[i-- - 1] & 0xf];
+		if (!(data[0] == '0' && data[1] == '0'))
 			printed += write(1, data, 2);
 	}
 	return (printed);
