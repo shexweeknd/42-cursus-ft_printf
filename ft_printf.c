@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/02 03:44:45 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/02 04:22:48 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	ft_putformat(const char *str, t_obj *obj)
 	return (printed);
 }
 
-static void ft_init_obj(t_obj *obj, char *str)
+static void	ft_init_obj(t_obj *obj, char *str)
 {
 	obj->s_len = ft_strlen(str);
 	obj->str = str;
@@ -65,7 +65,7 @@ static void ft_init_obj(t_obj *obj, char *str)
 
 int	ft_printf(const char *str, ...)
 {
-	t_obj 	*obj;
+	t_obj	*obj;
 
 	obj = (t_obj *)malloc(sizeof(t_obj));
 	ft_init_obj(obj, (char *)str);
