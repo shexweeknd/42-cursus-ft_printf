@@ -12,9 +12,6 @@ SRCS = ft_printf.c \
 		ft_putstr.c \
 		ft_putx.c \
 
-BONUS = ft_one_bonus.c \
-		ft_two_bonus.c \
-
 # Colors variables
 OBJS = $(SRCS:.c=.o)
 
@@ -46,19 +43,19 @@ all: $(OBJS)
 
 debug: re
 	@echo "$(GREEN)###$(BLUE) Exec debug rule$(GREEN)###$(END)"
-#	@cc $(FLAGS) -g main.c -L. -lftprintf && ./a.out | cat -e
-	@cc $(FLAGS) -g main.c $(SRCS) && ./a.out | cat -e
+	@cc $(FLAGS) -g main.c -L. -lftprintf && ./a.out | cat -e
+#	@cc $(FLAGS) -g main.c $(SRCS) && ./a.out | cat -e
 
-bonus: $(SRCS) += $(OBJS)
-bonus:
-	@echo "$(GREEN)#Added: $(END) $(BONUS)"
-bonus: .c.o
-	@echo "$(GREEN)###$(BLUE) Exec Bonus rule$(GREEN)###$(END)"
-	@make re
+# bonus: $(SRCS) += $(OBJS)
+# bonus:
+# 	@echo "$(GREEN)#Added: $(END) $(BONUS)"
+# bonus: .c.o
+# 	@echo "$(GREEN)###$(BLUE) Exec Bonus rule$(GREEN)###$(END)"
+# 	@make re
 
-bonus-debug: bonus
-	@echo "$(GREEN)###$(BLUE) Debugging Bonus Files$(GREEN)###$(END)"
-	@cc $(FLAGS) -g main.c $(SRCS) && ./a.out | cat -e
+# bonus-debug: bonus
+# 	@echo "$(GREEN)###$(BLUE) Debugging Bonus Files$(GREEN)###$(END)"
+# 	@cc $(FLAGS) -g main.c $(SRCS) && ./a.out | cat -e
 
 clean: $(OBJS)
 	@rm -rf $(OBJS) $(GARBAGE)

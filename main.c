@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 08:31:08 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/01 11:22:48 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/02 03:45:14 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 int	main(void)
 {
 	int	ret;
-	float entry;
 
-	entry = 7.6;
-	ret = printf("%f", entry);
+	ret = 42;
+	ret = ft_printf("%c", ret);
 	printf("\n%d\n", ret);
 	return (0);
 }

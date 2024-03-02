@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/01 13:22:44 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/02 03:44:45 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static size_t	ft_isset(const char c, const char *set)
 	return (0);
 }
 
-static int	ft_putformat(const char *str, va_list ap)
+static int	ft_putformat(const char *str, t_obj *obj)
 {
 	int		printed;
 	char	*set;
@@ -36,46 +36,49 @@ static int	ft_putformat(const char *str, va_list ap)
 		return (0);
 	printed = 0;
 	if (*str == 'c')
-		printed += ft_putchar_i(va_arg(ap, int));
+		printed += ft_putchar_i(va_arg(obj->ap, int));
 	else if (*str == 's')
-		printed += ft_putstr(va_arg(ap, char *));
+		printed += ft_putstr(va_arg(obj->ap, char *));
 	else if (*str == 'p')
-		printed += ft_put_addr(va_arg(ap, void *));
+		printed += ft_put_addr(va_arg(obj->ap, void *));
 	else if (*str == 'd' || *str == 'i')
-		printed += ft_putnbr_base(va_arg(ap, int), "0123456789");
+		printed += ft_putnbr_base(va_arg(obj->ap, int), "0123456789");
 	else if (*str == 'u')
-		printed += ft_put_unsigned_nbr(va_arg(ap, unsigned int));
+		printed += ft_put_unsigned_nbr(va_arg(obj->ap, unsigned int));
 	else if (*str == 'x')
-		printed += ft_putx(va_arg(ap, int), "0123456789abcdef");
+		printed += ft_putx(va_arg(obj->ap, int), "0123456789abcdef");
 	else if (*str == 'X')
-		printed += ft_putx(va_arg(ap, int), "0123456789ABCDEF");
+		printed += ft_putx(va_arg(obj->ap, int), "0123456789ABCDEF");
 	else if (*str == '%')
 		printed += write(1, "%", 1);
 	return (printed);
 }
 
+static void ft_init_obj(t_obj *obj, char *str)
+{
+	obj->s_len = ft_strlen(str);
+	obj->str = str;
+	obj->cursor = str;
+	obj->printed = 0;
+	return ;
+}
+
 int	ft_printf(const char *str, ...)
 {
-	va_list	ap;
-	int		printed;
+	t_obj 	*obj;
 
-	va_start(ap, str);
-	printed = 0;
+	obj = (t_obj *)malloc(sizeof(t_obj));
+	ft_init_obj(obj, (char *)str);
+	va_start(obj->ap, str);
 	while (*str)
 	{
 		if (*str == '%')
-		{
-			if (ft_isset(*(str + 1), "-0."))
-				printed += ft_format_bonus_one(++str, ap);
-			else if (ft_isset(*(str + 1), "# +"))
-				printed += ft_format_bonus_two(++str, ap);
-			else
-				printed += ft_putformat(++str, ap);
-		}
+			obj->printed += ft_putformat(++str, obj);
 		else
-			printed += write(1, str, 1);
+			obj->printed += write(1, str, 1);
 		str++;
 	}
-	va_end(ap);
-	return (printed);
+	va_end(obj->ap);
+	free(obj);
+	return (obj->printed);
 }

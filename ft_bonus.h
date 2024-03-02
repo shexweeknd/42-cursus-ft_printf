@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:59:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/01 13:20:45 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/02 02:28:04 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 typedef struct s_obj
 {
-	int	width = 0;
-	int	precision = 0;
+	int	strlen = 0;
+	int	printed = 0;
 }		t_obj;
 
 /* BONUS ONE "-0." */
