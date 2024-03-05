@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:59:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/02 04:23:55 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:26:23 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,29 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_obj
+typedef struct s_data
 {
-	int	strlen;
-	int	printed;
-}		t_obj;
+	char *str;
+	va_list ap;
+	unsigned int printed;
+	char *buffer;
+	t_format format;
+}		t_data;
+
+typedef struct s_format
+{
+	//[-+' '0]
+	int minus;
+	int plus;
+	int space;
+	int zero;
+
+	//width
+	int witdh_amount;
+
+	//precision
+	int precision;
+}	t_format;
 
 /* BONUS ONE "-0." */
 int		ft_format_bonus_one(const char *str, va_list ap);
