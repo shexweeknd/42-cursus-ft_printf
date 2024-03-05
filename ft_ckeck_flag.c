@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_one_bonus.c                                     :+:      :+:    :+:   */
+/*   ft_isint_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 10:34:54 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/02 10:41:25 by hramaros         ###   ########.fr       */
+/*   Created: 2024/03/02 10:41:36 by hramaros          #+#    #+#             */
+/*   Updated: 2024/03/02 10:41:57 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_bonus.h"
+#include "ft_printf.h"
 
-static int	padding_space(char *str)
+static int	ft_isint(char *str)
 {
-	int	printed;
+	int	ret;
 
-	printed = 0;
-	return (printed);
-}
-
-int	ft_format_bonus_one(const char *str, va_list ap)
-{
-	int	printed;
-
-	printed = 0;
-	if (*str == ft_isint(str + 1))
-		printed += ft_padding_space(str + 1);
-	return (printed);
+	ret = ft_atoi(str);
+	if (!ret)
+		return (0);
+	return (ret);
 }

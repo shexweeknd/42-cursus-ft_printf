@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/02 04:22:48 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/05 07:38:44 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ static void	ft_init_obj(t_obj *obj, char *str)
 	return ;
 }
 
+static int	ft_isflag(char *str)
+{
+	if (ft_isint(str))
+		return (1) return (0);
+}
+
 int	ft_printf(const char *str, ...)
 {
 	t_obj	*obj;
@@ -82,3 +88,30 @@ int	ft_printf(const char *str, ...)
 	free(obj);
 	return (obj->printed);
 }
+
+// algorithm
+/*
+
+1 - create struct to store data
+	actual pointer
+	the ap
+	the chars written
+	the buffer
+	the buffer index
+	the format associated with the actual iteration in it
+
+2 - create a struct to store flags, width, and precision
+	0 for each flag is unset
+	1 for each flag is set
+	!! width flag must be different than zero
+	precision can be zero but must be seen after '.'
+
+3 - create a buffer that stores the char and its already printed value
+
+4 - store into the buffer until you see the % sign
+
+5 - parse the flags if incountered % sign
+
+6 - flush the buffer at the end of the day
+
+*/
