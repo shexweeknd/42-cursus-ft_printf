@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/05 11:37:40 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/06 07:27:27 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,52 @@ static int	ft_isflag(char *str)
 		return (1) return (0);
 }
 
-//TODO fonction ft_get_format, fonction qui check data->str puis set the flags associated with it
-static void ft_get_format(t_data *data)
-{	
-	//check flags
+// TODO fonction ft_parse_on_buffer
+// fonction qui ajoute les modification sur le buffer de data en fonction des flags de format
+static void	ft_parse_on_buffer(t_data *data)
+{
+	// si on trouve le specificateur on appelle une fonction externe qui traite la data
+	// on traite les petits cas de flags
+	// 1 - #
+	// 2 - +
+	// 3 - 0 ou ' ' je sais pas
+	// 4 - -
 
-	//check width
+	// on traite le width (data)
+	
+	// on traite la precision (data)
+	
+	// remet les flags a zero pour l'arg suivant
+	ft_memset(data->format, 0, sizeof(t_format));
+	return (0);
+}
 
-	//check precision
-
+static void	ft_get_format(t_data *data)
+{
+	// tant qu'on a pas trouve le specificateur, on itere
+	while (!ft_isset(*data->str, "cspdiuxX%"))
+	{
+		// check flags [+- 0#]
+		if (*data->str == '-')
+			data->format->minus = 1;
+		if (*data->str == '+')
+			data->format->plus = 1;
+		if (*data->str == '0')
+			data->format->zero = 1;
+		if (*data->str == ' ')
+			data->format->space = 1;
+		if (*data->str == '#')
+			data->format->dash = 1;
+		// check width
+		if (ft_atoi(data->str))
+			data->width_amount = ft_atoi(data->str);
+		// check precision
+		if (*data->str == '.')
+			if (ft_atoi((data->str + 1)))
+				data->precision = ft_atoi((data->str + 1));
+		data->str++;
+	}
+	ft_parse_on_buffer(data);
 	return ;
 }
 

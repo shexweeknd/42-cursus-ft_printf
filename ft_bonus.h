@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:59:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/05 11:26:23 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/06 07:10:53 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_format
 	int plus;
 	int space;
 	int zero;
+	int dash;
 
 	//width
 	int witdh_amount;
