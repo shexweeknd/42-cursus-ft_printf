@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:59:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/06 07:10:53 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/07 09:36:51 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,35 +20,32 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_data
-{
-	char *str;
-	va_list ap;
-	unsigned int printed;
-	char *buffer;
-	t_format format;
-}		t_data;
-
 typedef struct s_format
 {
 	//[-+' '0]
-	int minus;
-	int plus;
-	int space;
-	int zero;
-	int dash;
+	int				minus;
+	int				plus;
+	int				space;
+	int				zero;
+	int				dash;
+	int				width;
+	int				precision;
+}					t_format;
 
-	//width
-	int witdh_amount;
+typedef struct s_data
+{
+	char			*str;
+	va_list			ap;
+	char			*buffer;
+	unsigned int	buffer_index;
+	unsigned int	printed;
+	t_format		format;
+}					t_data;
 
-	//precision
-	int precision;
-}	t_format;
+/*main function*/
+int					ft_printf(const char *str, ...);
 
-/* BONUS ONE "-0." */
-int		ft_format_bonus_one(const char *str, va_list ap);
-
-/* BONUS TWO "# +" */
-int		ft_format_bonus_two(const char *str, va_list ap);
+/*altering functions*/
+void				ft_alter_c(t_data *data);
 
 #endif

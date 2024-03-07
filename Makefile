@@ -5,12 +5,7 @@ FLAGS = -Wall -Wextra -Werror
 GARBAGE = *.o */*.o *.gch */*.gch *.out */*.out
 
 SRCS = ft_printf.c \
-		ft_put_addr.c \
-		ft_putnbr_base.c \
-		ft_put_unsigned_nbr.c \
-		ft_putchar_i.c \
-		ft_putstr.c \
-		ft_putx.c \
+		ft_alter_c.c \
 
 # Colors variables
 OBJS = $(SRCS:.c=.o)
@@ -26,12 +21,12 @@ END = \033[0m
 # Rules
 .c.o:
 	@echo "$(GREEN)###$(BLUE) Exec .c.o rule$(GREEN)###$(END)"
-	@cc -c $(SRCS) -I ./
+	@cc -c -g $(SRCS) -I ./
 
 all: $(OBJS)
 	@echo "$(GREEN)###$(BLUE) Exec all rule $(GREEN)###$(END)"
 	@cd ./libft && \
-	@make fclean bonus && \
+	make fclean bonus && \
 	cp libft.a ../$(NAME) && \
 	rm libft.a && \
 	cd ../

@@ -6,11 +6,12 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/06 07:27:27 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/07 11:09:42 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+// #include "ft_printf.h"
+#include "ft_bonus.h"
 
 static size_t	ft_isset(const char c, const char *set)
 {
@@ -26,138 +27,129 @@ static size_t	ft_isset(const char c, const char *set)
 	return (0);
 }
 
-static int	ft_putformat(const char *str, t_data *data)
+static int	ft_flush(t_data *data)
 {
-	int		printed;
-	char	*set;
-
-	set = "cspdiuxX%";
-	if (!ft_isset(*str, set))
-		return (0);
-	printed = 0;
-	if (*str == 'c')
-		printed += ft_putchar_i(va_arg(data->ap, int));
-	else if (*str == 's')
-		printed += ft_putstr(va_arg(data->ap, char *));
-	else if (*str == 'p')
-		printed += ft_put_addr(va_arg(data->ap, void *));
-	else if (*str == 'd' || *str == 'i')
-		printed += ft_putnbr_base(va_arg(data->ap, int), "0123456789");
-	else if (*str == 'u')
-		printed += ft_put_unsigned_nbr(va_arg(data->ap, unsigned int));
-	else if (*str == 'x')
-		printed += ft_putx(va_arg(data->ap, int), "0123456789abcdef");
-	else if (*str == 'X')
-		printed += ft_putx(va_arg(data->ap, int), "0123456789ABCDEF");
-	else if (*str == '%')
-		printed += write(1, "%", 1);
-	return (printed);
+	// ft_flush print tout ce au'il y a dans le buffer et puis remet le buffer index a ainsi que le buffer a 0
+	if (*data->buffer)
+		data->printed += write(1, data->buffer, data->buffer_index);
+	ft_memset(data->buffer, 0, sizeof(char) * 4096);
+	data->buffer_index = 0;
+	return (data->printed);
 }
 
-static void	ft_init_data(t_data *data, char *str)
+static void	ft_alter_buffer(t_data *data, int c)
 {
-	data->s_len = ft_strlen(str);
-	data->str = str;
-	data->cursor = str;
-	data->printed = 0;
+	if (data->buffer_index == 4096)
+		ft_flush(data);
+	else
+	{
+		data->buffer[data->buffer_index] = (char)c;
+		data->buffer_index += 1;
+	}
 	return ;
 }
 
-static int	ft_isflag(char *str)
+static void	ft_reset_format(t_format *format)
 {
-	if (ft_isint(str))
-		return (1) return (0);
+	format->minus = 0;
+	format->plus = 0;
+	format->space = 0;
+	format->zero = 0;
+	format->dash = 0;
+	format->width = 0;
+	format->precision = 0;
+	return ;
 }
 
-// TODO fonction ft_parse_on_buffer
-// fonction qui ajoute les modification sur le buffer de data en fonction des flags de format
 static void	ft_parse_on_buffer(t_data *data)
 {
-	// si on trouve le specificateur on appelle une fonction externe qui traite la data
-	// on traite les petits cas de flags
-	// 1 - #
-	// 2 - +
-	// 3 - 0 ou ' ' je sais pas
-	// 4 - -
+	if (*data->str == '%')
+		ft_alter_buffer(data, '%');
+	else if (*data->str == 'c')
+		ft_alter_c(data);
+	// TODO faire des flags de spdiuxX%
+	else
+		ft_alter_buffer(data, *data->str);
+	ft_reset_format(&(data->format));
+	return ;
+}
 
-	// on traite le width (data)
-	
-	// on traite la precision (data)
-	
-	// remet les flags a zero pour l'arg suivant
-	ft_memset(data->format, 0, sizeof(t_format));
-	return (0);
+static size_t	ft_intlen(unsigned long nbr)
+{
+	size_t	res;
+
+	res = 1;
+	while (nbr >= 10)
+	{
+		nbr /= 10;
+		res++;
+	}
+	return (res);
 }
 
 static void	ft_get_format(t_data *data)
 {
 	// tant qu'on a pas trouve le specificateur, on itere
-	while (!ft_isset(*data->str, "cspdiuxX%"))
+	while (!ft_isset(*data->str, "cspdiuxX"))
 	{
 		// check flags [+- 0#]
 		if (*data->str == '-')
-			data->format->minus = 1;
-		if (*data->str == '+')
-			data->format->plus = 1;
-		if (*data->str == '0')
-			data->format->zero = 1;
-		if (*data->str == ' ')
-			data->format->space = 1;
-		if (*data->str == '#')
-			data->format->dash = 1;
+			data->format.minus = 1;
+		else if (*data->str == '+')
+			data->format.plus = 1;
+		else if (*data->str == '0')
+			data->format.zero = 1;
+		else if (*data->str == ' ')
+			data->format.space = 1;
+		else if (*data->str == '#')
+			data->format.dash = 1;
 		// check width
-		if (ft_atoi(data->str))
-			data->width_amount = ft_atoi(data->str);
+		else if (ft_atoi(data->str))
+		{
+			data->format.width = ft_atoi(data->str);
+			data->str += (ft_intlen(data->format.width));
+			break ;
+		}
 		// check precision
 		if (*data->str == '.')
 			if (ft_atoi((data->str + 1)))
-				data->precision = ft_atoi((data->str + 1));
+				data->format.precision = ft_atoi((data->str + 1));
 		data->str++;
 	}
 	ft_parse_on_buffer(data);
 	return ;
 }
 
-static unsigned int	ft_flush(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (*(data->buffer + i))
-		data->printed += write(1, (data->buffer + i++), 1);
-	free(data->buffer);
-	return (data->printed);
-}
-
-static void	ft_init_data(t_data data, char *str, char *buffer)
+static void	ft_init_data(t_data *data, char *str)
 {
 	data->str = str;
-	printed = 0;
-	data->buffer = buffer;
-	ft_memset(data->format, 0, sizeof(t_format));
+	data->buffer_index = 0;
+	data->printed = 0;
+	ft_reset_format(&(data->format));
 	return ;
 }
 
 int	ft_printf(const char *str, ...)
 {
-	t_data			*data;
-	char			*buffer;
+	t_data			data;
 	unsigned int	printed;
 
-	buffer = (char *)malloc(sizeof(char) * 4096);
-	if (!buffer)
-		return (NULL);
-	va_start(data->ap, str);
-	ft_init_data(data, str, buffer);
-	while (*data->str)
+	data.buffer = (char *)malloc(sizeof(char) * 4096);
+	if (!data.buffer)
+		return (-1);
+	va_start(data.ap, str);
+	ft_init_data(&data, str);
+	while (*data.str)
 	{
-		if (*data->str == '%' && *(++data->str))
-			ft_get_format(data);
-		*buffer++ = *data->str++;
+		if (*data.str == '%' && *++data.str != '\0')
+			ft_get_format(&data);
+		else
+			ft_parse_on_buffer(&data);
+		data.str++;
 	}
-	printed = ft_flush(data);
-	va_end(data->ap);
-	free(data);
+	printed = ft_flush(&data);
+	va_end(data.ap);
+	free(data.buffer);
 	return (printed);
 }
 
