@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/07 15:12:38 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/08 08:33:16 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,11 +113,11 @@ static void	ft_get_format(t_data *data)
 			data->str += (ft_intlen(data->format.width));
 		}
 		// check precision
-		else if (*data->str == '.')
+		else if (*data->str == '.' && ft_atoi(data->str + 1))
 		{
 			data->format.dot = 1;
 			data->format.precision = ft_atoi((data->str + 1));
-			data->str += (ft_intlen(data->format.precision) - 1);
+			data->str += (ft_intlen(data->format.precision));
 		}
 		else
 			data->str++;
