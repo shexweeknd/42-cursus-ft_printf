@@ -6,13 +6,13 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:27:49 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/07 11:36:17 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:38:26 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_bonus.h"
 
-static void	ft_fullfill(t_data *data, int c)
+static void	ft_fullfill_c(t_data *data, int c)
 {
 	int	i;
 
@@ -37,7 +37,7 @@ static void	ft_fullfill(t_data *data, int c)
 void	ft_alter_c(t_data *data)
 {
 	//[-][width]
-	ft_fullfill(data, va_arg(data->ap, char));
+	ft_fullfill_c(data, va_arg(data->ap, char));
 	data->buffer_index++;
 	return ;
 }

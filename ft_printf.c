@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/07 11:09:42 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:12:38 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	ft_reset_format(t_format *format)
 	format->zero = 0;
 	format->dash = 0;
 	format->width = 0;
+	format->dot = 0;
 	format->precision = 0;
 	return ;
 }
@@ -68,6 +69,8 @@ static void	ft_parse_on_buffer(t_data *data)
 	else if (*data->str == 'c')
 		ft_alter_c(data);
 	// TODO faire des flags de spdiuxX%
+	else if (*data->str == 's')
+		ft_alter_s(data);
 	else
 		ft_alter_buffer(data, *data->str);
 	ft_reset_format(&(data->format));
@@ -93,28 +96,31 @@ static void	ft_get_format(t_data *data)
 	while (!ft_isset(*data->str, "cspdiuxX"))
 	{
 		// check flags [+- 0#]
-		if (*data->str == '-')
+		if (*data->str == '-' && *++data->str)
 			data->format.minus = 1;
-		else if (*data->str == '+')
+		else if (*data->str == '+' && *++data->str)
 			data->format.plus = 1;
-		else if (*data->str == '0')
+		else if (*data->str == '0' && !data->format.dot && *++data->str)
 			data->format.zero = 1;
-		else if (*data->str == ' ')
+		else if (*data->str == ' ' && *++data->str)
 			data->format.space = 1;
-		else if (*data->str == '#')
+		else if (*data->str == '#' && *++data->str)
 			data->format.dash = 1;
 		// check width
-		else if (ft_atoi(data->str))
+		else if (ft_atoi(data->str) && !data->format.dot)
 		{
 			data->format.width = ft_atoi(data->str);
 			data->str += (ft_intlen(data->format.width));
-			break ;
 		}
 		// check precision
-		if (*data->str == '.')
-			if (ft_atoi((data->str + 1)))
-				data->format.precision = ft_atoi((data->str + 1));
-		data->str++;
+		else if (*data->str == '.')
+		{
+			data->format.dot = 1;
+			data->format.precision = ft_atoi((data->str + 1));
+			data->str += (ft_intlen(data->format.precision) - 1);
+		}
+		else
+			data->str++;
 	}
 	ft_parse_on_buffer(data);
 	return ;

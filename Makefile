@@ -6,6 +6,7 @@ GARBAGE = *.o */*.o *.gch */*.gch *.out */*.out
 
 SRCS = ft_printf.c \
 		ft_alter_c.c \
+		ft_alter_s.c \
 
 # Colors variables
 OBJS = $(SRCS:.c=.o)
