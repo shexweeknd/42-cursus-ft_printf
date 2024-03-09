@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:40:23 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/08 08:24:35 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/09 07:29:42 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ static char *ft_strndup(const char *s, size_t n)
 
 }
 
+static void ft_dup_arg(t_data *data, char *s)
+{
+	while (*s)
+		data->buffer[data->buffer_index++] = *s++;
+	return ;
+}
+
 static void	ft_fullfill_s(t_data *data, char *s)
 {
 	int		i;
@@ -39,6 +46,11 @@ static void	ft_fullfill_s(t_data *data, char *s)
 
 	// precision sur s truncate when presicion < strlen(s)
 	i = 0;
+	if (!data->format.dot)
+	{
+		ft_dup_arg(data, s);
+		return ;
+	}
 	while (i < data->format.precision && s[i] && data->format.dot)
 		i++;
 	tmp = ft_strndup(s, i);
