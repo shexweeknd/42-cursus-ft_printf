@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 08:29:21 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/09 14:12:06 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:18:22 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void	ft_fullfill_p(t_data *data, void *ptr)
 	{
 		ft_dump_data(data, addr);
 		while (padding_size--)
-			data->buffer[++data->buffer_index] = ' ';
+			data->buffer[data->buffer_index++] = ' ';
 	}
 	else if (!data->format.minus && padding_size > 0)
 	{
