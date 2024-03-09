@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:59:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/07 15:00:08 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/09 07:38:04 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ typedef struct s_format
 	int				space;
 	int				zero;
 	int				dash;
-	int				width;
+	size_t			width;
 	int				dot;
-	int				precision;
+	size_t			precision;
 }					t_format;
 
 typedef struct s_data

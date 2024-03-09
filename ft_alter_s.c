@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 11:40:23 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/09 07:29:42 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/09 07:39:21 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,16 @@ static void ft_dup_arg(t_data *data, char *s)
 
 static void	ft_fullfill_s(t_data *data, char *s)
 {
-	int		i;
+	size_t		i;
 	size_t	padding_size;
 	char	*tmp;
 
 	// precision sur s truncate when presicion < strlen(s)
 	i = 0;
-	if (!data->format.dot)
-	{
-		ft_dup_arg(data, s);
-		return ;
-	}
 	while (i < data->format.precision && s[i] && data->format.dot)
 		i++;
+	if (!data->format.dot)
+		i = ft_strlen(s);
 	tmp = ft_strndup(s, i);
 	if (!tmp)
 		return ;
