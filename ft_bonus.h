@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:59:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/09 07:38:04 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/09 12:16:05 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ int					ft_printf(const char *str, ...);
 /*altering functions*/
 void				ft_alter_c(t_data *data);
 void				ft_alter_s(t_data *data);
+void				ft_alter_p(t_data *data);
 
 #endif

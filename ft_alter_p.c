@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 08:29:21 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/09 09:31:32 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/09 13:07:45 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,27 @@ static void	ft_dump_arr_buffer(char *addr, char *arr)
 	if (*arr == '0' && *(arr + 1) == '0')
 		return ;
 	if (*(arr) == '0')
-		return (ft_strlcat(addr, arr + 1, ft_strlen(addr) + ft_strlen(arr + 1)
-				+ 1));
-	return (ft_strlcat(addr, arr, ft_strlen(addr) + ft_strlen(arr) + 1));
+	{
+		ft_strlcat(addr, arr + 1, ft_strlen(addr) + ft_strlen(arr + 1) + 1);
+		return ;
+	}
+	ft_strlcat(addr, arr, ft_strlen(addr) + ft_strlen(arr) + 1);
+	return ;
 }
 
 static char	*ft_create_addr(void *ptr)
 {
 	unsigned int	i;
 	char			b_arr[sizeof(unsigned int *)];
-	char			arr[2];
+	char			arr[3];
 	char			*hex;
 	char			*addr;
 
 	hex = "0123456789abcdef";
-	addr = (char *)malloc(sizeof(char) * 4096);
+	addr = (char *)calloc(4096, sizeof(char));
 	if (!addr)
 		return (NULL);
+	ft_bzero(addr);
 	i = 0;
 	if (!ptr)
 	{
@@ -63,27 +67,28 @@ static char	*ft_create_addr(void *ptr)
 	{
 		arr[0] = hex[((char)b_arr[i - 1] >> 4) & 0xf];
 		arr[1] = hex[(char)b_arr[i-- - 1] & 0xf];
+		arr[2] = '\0';
 		ft_dump_arr_buffer(addr, arr);
 	}
 	return (addr);
 }
 
-static void	ft_fullfill_p(t_data data, void *ptr)
+static void	ft_fullfill_p(t_data *data, void *ptr)
 {
 	int		i;
 	char	*addr;
-	size_t	padding_size;
+	long	padding_size;
 
 	i = 0;
-	addr = ft_create_addr(data, ptr);
-    padding_size = data->format.width - ft_strlen(addr);
+	addr = ft_create_addr(ptr);
+	padding_size = data->format.width - ft_strlen(addr);
 	if (padding_size <= 0)
 	{
-		return (ft_dump_data(data, buffer));
+		return (ft_dump_data(data, addr));
 	}
 	else if (data->format.minus && padding_size > 0)
 	{
-		ft_dump_data(data, buffer);
+		ft_dump_data(data, addr);
 		while (padding_size--)
 			data->buffer[++data->buffer_index] = ' ';
 	}
@@ -91,7 +96,7 @@ static void	ft_fullfill_p(t_data data, void *ptr)
 	{
 		while (padding_size--)
 			data->buffer[data->buffer_index++] = ' ';
-        ft_dump_data(data, buffer);
+		ft_dump_data(data, addr);
 	}
 	return ;
 }

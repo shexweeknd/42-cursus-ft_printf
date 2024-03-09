@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/09 07:30:58 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/09 12:15:46 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static void	ft_parse_on_buffer(t_data *data)
 	// TODO faire des flags de spdiuxX%
 	else if (*data->str == 's')
 		ft_alter_s(data);
+	else if (*data->str == 'p')
+		ft_alter_p(data);
 	else
 		ft_alter_buffer(data, *data->str);
 	ft_reset_format(&(data->format));
