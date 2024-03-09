@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 08:29:21 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/09 13:07:45 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:12:06 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void	ft_dump_data(t_data *data, char *buffer)
 
 static void	ft_dump_arr_buffer(char *addr, char *arr)
 {
-	if (*arr == '0' && *(arr + 1) == '0')
+	if (*arr == '0' && *(arr + 1) == '0' && addr[ft_strlen(addr) - 1] == 'x')
 		return ;
-	if (*(arr) == '0')
+	if (*(arr) == '0' && addr[ft_strlen(addr) - 1] == 'x')
 	{
 		ft_strlcat(addr, arr + 1, ft_strlen(addr) + ft_strlen(arr + 1) + 1);
 		return ;
