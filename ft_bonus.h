@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:59:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/09 12:16:05 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/10 04:39:45 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_format
 	int				zero;
 	int				dash;
 	size_t			width;
+	char			width_char;
 	int				dot;
 	size_t			precision;
 }					t_format;
@@ -50,5 +51,6 @@ int					ft_printf(const char *str, ...);
 void				ft_alter_c(t_data *data);
 void				ft_alter_s(t_data *data);
 void				ft_alter_p(t_data *data);
+void				ft_alter_d(t_data *data);
 
 #endif

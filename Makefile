@@ -8,6 +8,7 @@ SRCS = ft_printf.c \
 		ft_alter_c.c \
 		ft_alter_s.c \
 		ft_alter_p.c \
+		ft_alter_d.c \
 
 # Colors variables
 OBJS = $(SRCS:.c=.o)

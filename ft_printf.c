@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/09 12:15:46 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/10 04:40:52 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	ft_reset_format(t_format *format)
 	format->zero = 0;
 	format->dash = 0;
 	format->width = 0;
+	format->width_char = ' ';
 	format->dot = 0;
 	format->precision = 0;
 	return ;
