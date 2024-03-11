@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_addchar_i.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 08:31:08 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/11 07:50:24 by hramaros         ###   ########.fr       */
+/*   Created: 2024/02/29 12:41:16 by hramaros          #+#    #+#             */
+/*   Updated: 2024/03/11 07:28:58 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_printf.h"
-#include "ft_bonus.h"
+#include "ft_printf.h"
 
-int	main(void)
+void	ft_addchar_i(char *buffer, int *index_ptr, char c)
 {
-	int	ret;
-
-	ret = 42;
-	ret = ft_printf("[% 07d]", ret);
-	printf("\n%d\n", ret);
-	ret = printf("[% 07d]", ret);
-	printf("\n%d\n", ret);
-	return (0);
+	buffer[*index_ptr] = c;
+	*index_ptr += 1;
 }

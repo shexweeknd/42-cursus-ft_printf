@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/10 04:40:52 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/11 07:53:28 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ static void	ft_parse_on_buffer(t_data *data)
 		ft_alter_s(data);
 	else if (*data->str == 'p')
 		ft_alter_p(data);
+	else if (*data->str == 'd')
+		ft_alter_d(data);
 	else
 		ft_alter_buffer(data, *data->str);
 	ft_reset_format(&(data->format));
