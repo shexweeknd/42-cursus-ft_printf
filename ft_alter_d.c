@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 03:57:41 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/11 18:07:53 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:19:23 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,13 @@ static void	ft_fullfill_d(t_data *data, int nbr)
 	else if (data->format.plus)
 		buffer[i++] = '+';
 	// precision ajoute des zeros devant le nbr avant
-	while (data->format.precision-- && !data->format.zero)
+	while ((data->format.precision-- - ft_intlen(nbr)) && !data->format.zero)
 		buffer[i++] = '0';
 	// 0 + width
 	if ((ft_strlen(buffer) < data->format.width))
 		ft_add_width(data, buffer, &i, nbr);
+	else
+		ft_addnbr_base((buffer + i), &i, nbr, "0123456789");
 	ft_alter_data(data, buffer);
 	return ;
 }
