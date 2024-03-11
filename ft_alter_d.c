@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 03:57:41 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/11 08:23:30 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:07:53 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ static void	ft_add_width(t_data *data, char *buffer, int *i, int nbr)
 	{
 		if (data->format.minus)
 		{
+			ft_addnbr_base((buffer + *i), i, nbr, "0123456789");
 			while (padding_size--)
-				buffer[*i++] = data->format.width_char;
-			ft_addnbr_base((buffer + *i++), nbr, "0123456789");
+				buffer[(*i)++] = data->format.width_char;
 		}
 		else if (!data->format.minus)
 		{
-			ft_addnbr_base((buffer + *i++), nbr, "0123456789");
 			while (padding_size--)
-				buffer[*i++] = data->format.width_char;
+				buffer[(*i)++] = data->format.width_char;
+			ft_addnbr_base((buffer + *i), i, nbr, "0123456789");
 		}
 	}
 	return ;

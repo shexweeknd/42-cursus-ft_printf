@@ -6,13 +6,13 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 07:02:21 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/11 07:35:56 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:03:53 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	recurse_nbr(char *buffer, int *index_ptr, long nbr, char *base)
+static int	recurse_nbr(char *buffer, int *index_ptr, long nbr, char *base)
 {
 	long	base_size;
 
@@ -20,7 +20,7 @@ static void	recurse_nbr(char *buffer, int *index_ptr, long nbr, char *base)
 	while (base[base_size])
 		base_size++;
 	if (base_size == 0)
-		return ;
+		return (0);
 	if (nbr >= base_size)
 	{
 		recurse_nbr(buffer, index_ptr , nbr / base_size, base);
@@ -28,7 +28,7 @@ static void	recurse_nbr(char *buffer, int *index_ptr, long nbr, char *base)
 	}
 	else if (nbr < base_size)
 		ft_addchar_i(buffer, index_ptr, nbr % base_size + 48);
-	return ;
+	return (*index_ptr);
 }
 
 static int	verify_errors(char *base)
@@ -60,7 +60,7 @@ static int	verify_errors(char *base)
 	return (1);
 }
 
-void	ft_addnbr_base(char *buffer, int nbr, char *base)
+void	ft_addnbr_base(char *buffer, int *index_ptr, int nbr, char *base)
 {
 	long n;
 	int i;
@@ -74,6 +74,6 @@ void	ft_addnbr_base(char *buffer, int nbr, char *base)
 		buffer[i++] = '-';
 		n *= -1;
 	}
-	recurse_nbr(buffer, &i, n, base);
+	*index_ptr += recurse_nbr(buffer, &i, n, base);
 	return ;
 }
