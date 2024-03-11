@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_intlen.c                                        :+:      :+:    :+:   */
+/*   ft_dlen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 08:23:38 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/11 08:24:36 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/11 08:33:47 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ size_t	ft_ullen(unsigned long nbr)
 	return (res);
 }
 
+static long	ft_abs(int nbr)
+{
+	if (nbr == -2147483648)
+		return (2147483648);
+	if (nbr < 0)
+		nbr *= -1;
+	return (nbr);
+}
+
 size_t ft_intlen(int nbr)
 {
 	size_t size;
@@ -32,5 +41,5 @@ size_t ft_intlen(int nbr)
 	size = 1;
 	if (nbr < 0)
 		size++;
-	size += ft_ullen (-nbr);
+	size += ft_ullen (ft_abs(nbr));
 }
