@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 03:57:41 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/11 07:55:36 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/11 08:23:30 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	ft_add_width(t_data *data, char *buffer, int *i, int nbr)
 {
 	int	padding_size;
 
-	padding_size = data->format.width - ft_strlen(buffer);
+	padding_size = data->format.width - (ft_strlen(buffer) + ft_intlen(nbr));
 	if (padding_size > 0)
 	{
 		if (data->format.minus)
@@ -55,6 +55,7 @@ static void	ft_fullfill_d(t_data *data, int nbr)
 	if (!buffer)
 		return ;
 	// espace or plus
+	i = 0;
 	if (data->format.space)
 		buffer[i++] = ' ';
 	else if (data->format.plus)

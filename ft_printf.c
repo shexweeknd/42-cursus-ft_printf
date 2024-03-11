@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/11 07:53:28 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/11 08:24:25 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,19 +82,6 @@ static void	ft_parse_on_buffer(t_data *data)
 	return ;
 }
 
-static size_t	ft_intlen(unsigned long nbr)
-{
-	size_t	res;
-
-	res = 1;
-	while (nbr >= 10)
-	{
-		nbr /= 10;
-		res++;
-	}
-	return (res);
-}
-
 static void	ft_get_format(t_data *data)
 {
 	// tant qu'on a pas trouve le specificateur, on itere
@@ -115,14 +102,14 @@ static void	ft_get_format(t_data *data)
 		else if (ft_atoi(data->str) && !data->format.dot)
 		{
 			data->format.width = ft_atoi(data->str);
-			data->str += (ft_intlen(data->format.width));
+			data->str += (ft_ullen(data->format.width));
 		}
 		// check precision
 		else if (*data->str == '.')
 		{
 			data->format.dot = 1;
 			data->format.precision = ft_atoi((data->str + 1));
-			data->str += (ft_intlen(data->format.precision));
+			data->str += (ft_ullen(data->format.precision));
 		}
 		else
 			data->str++;

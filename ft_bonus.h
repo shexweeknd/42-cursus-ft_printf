@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 12:59:43 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/11 07:29:08 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/11 08:25:00 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ void				ft_alter_d(t_data *data);
 /*utils functions*/
 void				ft_addnbr_base(char *buffer, int nbr, char *base);
 void				ft_addchar_i(char *buffer, int *index_ptr, char c);
+size_t				ft_ullen(unsigned long nbr);
+size_t				ft_intlen(int nbr);
 
 #endif
