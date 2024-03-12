@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 03:57:41 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/12 02:57:23 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/12 03:34:39 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,31 @@ static void	ft_alter_data(t_data *data, char *buffer)
 	return ;
 }
 
+static void	ft_add_precision(t_data *data, char *buffer, int *i, int nbr)
+{
+	// precision ajoute des zeros devant le nbr avant
+	if ((int)(data->format.precision - ft_intlen(nbr)) <= 0)
+		return ;
+	while ((data->format.precision-- - ft_intlen(nbr)) && !data->format.zero)
+		buffer[(*i)++] = '0';
+	return ;
+}
+
 static void	ft_add_width(t_data *data, char *buffer, int *i, int nbr)
 {
 	int	padding_size;
 
-	padding_size = data->format.width - (ft_strlen(buffer) + ft_intlen(nbr));
+	if (data->format.precision)
+		padding_size = data->format.width - (ft_strlen(buffer)
+				+ data->format.precision);
+	else
+		padding_size = data->format.width - (ft_strlen(buffer)
+				+ ft_intlen(nbr));
 	if (padding_size > 0)
 	{
 		if (data->format.minus)
 		{
+			ft_add_precision(data, buffer, i, nbr);
 			ft_addnbr_base((buffer + *i), i, nbr, "0123456789");
 			while (padding_size--)
 				buffer[(*i)++] = data->format.width_char;
@@ -40,6 +56,7 @@ static void	ft_add_width(t_data *data, char *buffer, int *i, int nbr)
 		{
 			while (padding_size--)
 				buffer[(*i)++] = data->format.width_char;
+			ft_add_precision(data, buffer, i, nbr);
 			ft_addnbr_base((buffer + *i), i, nbr, "0123456789");
 		}
 	}
@@ -60,14 +77,14 @@ static void	ft_fullfill_d(t_data *data, int nbr)
 		buffer[i++] = ' ';
 	else if (data->format.plus)
 		buffer[i++] = '+';
-	// precision ajoute des zeros devant le nbr avant
-	while ((data->format.precision-- - ft_intlen(nbr)) && !data->format.zero)
-		buffer[i++] = '0';
 	// 0 + width
 	if (((ft_strlen(buffer) + ft_intlen(nbr)) < data->format.width))
 		ft_add_width(data, buffer, &i, nbr);
 	else
+	{
+		ft_add_precision(data, buffer, &i, nbr);
 		ft_addnbr_base((buffer + i), &i, nbr, "0123456789");
+	}
 	ft_alter_data(data, buffer);
 	return ;
 }
