@@ -10,6 +10,7 @@ SRCS = ft_printf.c \
 		ft_alter_p.c \
 		ft_alter_d.c \
 		ft_alter_u.c \
+		ft_alter_x.c \
 		ft_addchar_i.c \
 		ft_dlen.c \
 		ft_addnbr_base.c

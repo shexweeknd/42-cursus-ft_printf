@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 09:22:20 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/12 08:02:50 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/12 08:05:02 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ static void	ft_parse_on_buffer(t_data *data)
 		ft_alter_d(data);
 	else if (*data->str == 'u')
 		ft_alter_u(data);
+	else if (*data->str == 'x')
+		ft_alter_x(data); 
 	else
 		ft_alter_buffer(data, *data->str);
 	ft_reset_format(&(data->format));

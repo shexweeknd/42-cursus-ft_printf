@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putx.c                                          :+:      :+:    :+:   */
+/*   ft_add_x.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 16:40:28 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/12 08:09:05 by hramaros         ###   ########.fr       */
+/*   Created: 2024/03/12 08:09:30 by hramaros          #+#    #+#             */
+/*   Updated: 2024/03/12 08:28:22 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_bonus.h"
 
-static int	recurse_nbr(long nbr, char *base)
+static int	recurse_nbr(char *buffer, int *index_ptr, long nbr, char *base)
 {
 	long	base_size;
-	int		printed;
 
 	base_size = 0;
 	while (base[base_size])
 		base_size++;
 	if (base_size == 0)
 		return (0);
-	printed = 0;
 	if (nbr >= base_size)
 	{
-		printed += recurse_nbr(nbr / base_size, base);
-		printed += ft_putchar_i(base[nbr % base_size]);
+		recurse_nbr(buffer, index_ptr, nbr / base_size, base);
+		ft_addchar_i(buffer, index_ptr, nbr % base_size + 48);
 	}
 	else if (nbr < base_size)
-		printed += ft_putchar_i(base[nbr % base_size]);
-	return (printed);
+		ft_addchar_i(buffer, index_ptr, nbr % base_size + 48);
+	return (*index_ptr);
 }
 
 static int	verify_errors(char *base)
@@ -62,12 +60,13 @@ static int	verify_errors(char *base)
 	return (1);
 }
 
-int	ft_putx(unsigned int nbr, char *base)
+void	ft_addx(char *buffer, int *index_ptr, unsigned int nbr, char *base)
 {
-	int		printed;
+	int	i;
 
+	i = 0;
 	if (!verify_errors(base))
 		return (0);
-	printed = recurse_nbr(nbr, base);
-	return (printed);
+	*index_ptr += recurse_nbr(buffer, &i, nbr, base);
+	return ;
 }
