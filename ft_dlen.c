@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 08:23:38 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/11 08:33:47 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/12 07:32:10 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ size_t	ft_ullen(unsigned long nbr)
 	return (res);
 }
 
-static long	ft_abs(int nbr)
+long	ft_abs(int nbr)
 {
 	if (nbr == -2147483648)
 		return (2147483648);

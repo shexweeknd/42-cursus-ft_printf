@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_alter_d.c                                       :+:      :+:    :+:   */
+/*   ft_alter_u.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/10 03:57:41 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/12 07:34:04 by hramaros         ###   ########.fr       */
+/*   Created: 2024/03/12 07:56:44 by hramaros          #+#    #+#             */
+/*   Updated: 2024/03/12 08:02:08 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	ft_add_width(t_data *data, char *buffer, int *i, int nbr)
 	return ;
 }
 
-static void	ft_fullfill_d(t_data *data, long nbr)
+static void	ft_fullfill_u(t_data *data, unsigned int nbr)
 {
 	char	*buffer;
 	int		i;
@@ -75,11 +75,6 @@ static void	ft_fullfill_d(t_data *data, long nbr)
 	i = 0;
 	if (data->format.space)
 		buffer[i++] = ' ';
-	else if (nbr < 0)
-	{
-		buffer[i++] = '-';
-		nbr = ft_abs(nbr);
-	}
 	else if (data->format.plus)
 		buffer[i++] = '+';
 	// 0 + width
@@ -94,33 +89,12 @@ static void	ft_fullfill_d(t_data *data, long nbr)
 	return ;
 }
 
-void	ft_alter_d(t_data *data)
+void	ft_alter_u(t_data *data)
 {
 	//[-+ 0][width][precision]
 	if (data->format.zero)
 		data->format.width_char = '0';
 	// TODO protection des cas exceptionnels
-	ft_fullfill_d(data, va_arg(data->ap, int));
+	ft_fullfill_u(data, va_arg(data->ap, unsigned int));
 	return ;
 }
-
-// exceptionnnels
-/*
-' ' avec '+' est interdit
-'0' avec '-' est interdit
-'0' avec precision est interdit
-*/
-
-//' ' ajoute un seul espace espace > (0 + width)
-//' ' > '-'
-//'0' seul ne fait rien (width >= 1)
-// precision > width (width ne fait rien si ft_strlen(buffer) >= width)
-// precision agit comme '0' il ajoute des zeros dans le buffer
-// width sans '0' ajoute des espaces
-// with avec '0' ajoute des zero a la place des espaces
-
-// (' ' | +) > precision > justify > width
-// (' ' | +) > (0 + width) ==>
-//		si on a un ' ' alors le nombre de zero est de len_nbr(nbr) - (width- 1)
-//		sinon si on a pas un ' ' alors le nombre de zero est de len_nbr(nbr)
-//			- width

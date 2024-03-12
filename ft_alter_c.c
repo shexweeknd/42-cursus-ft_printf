@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:27:49 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/07 13:38:26 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/12 07:46:51 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,3 @@ void	ft_alter_c(t_data *data)
 	data->buffer_index++;
 	return ;
 }
-
-/*
-012
-[
-*/

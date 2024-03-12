@@ -6,7 +6,7 @@
 /*   By: hramaros <hramaros@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 07:02:21 by hramaros          #+#    #+#             */
-/*   Updated: 2024/03/11 18:03:53 by hramaros         ###   ########.fr       */
+/*   Updated: 2024/03/12 07:38:13 by hramaros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	verify_errors(char *base)
 	return (1);
 }
 
-void	ft_addnbr_base(char *buffer, int *index_ptr, int nbr, char *base)
+void	ft_addnbr_base(char *buffer, int *index_ptr, long nbr, char *base)
 {
 	long n;
 	int i;
